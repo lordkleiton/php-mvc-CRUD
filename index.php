@@ -28,3 +28,12 @@
         <input type="submit" value="Pesquisar" name="submit">
     </form>
 </div>
+
+<div class="conteudo">
+    <h1>Alterar produto</h1>
+    <form action="controller/selectUpdate.php" method="POST">
+        <label for="pesquisa">Digite o nome do produto: </label>
+        <input type="number" name="id" id="pesquisa" placeholder="Ex: 10" required>
+        <input type="submit" value="Alterar" name="submit">
+    </form>
+</div>
