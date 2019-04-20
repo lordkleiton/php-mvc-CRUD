@@ -1,6 +1,6 @@
-CREATE DATABASE aaa;
+CREATE DATABASE teste;
 
-USE aaa;
+USE teste;
 
 CREATE TABLE produtos(
     id INT NOT NULL AUTO_INCREMENT, 
