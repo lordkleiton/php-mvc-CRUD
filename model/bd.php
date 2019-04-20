@@ -45,7 +45,7 @@
             $pdo = $this->getPDO();
             $stmt = $pdo->prepare(QSELECTBYID);
             $stmt->execute(array(
-                ':id' => $id
+                ':id' => (int) $id
             ));
 
             return $stmt->fetchAll();
@@ -63,7 +63,7 @@
             $pdo = $this->getPDO();
             $stmt = $pdo->prepare(QDELETE);
             $stmt->execute(array(
-                ':id' => $id
+                ':id' => (int) $id
             ));
 
             return true;
@@ -74,7 +74,7 @@
             $stmt = $pdo->prepare(QINSERT);
             $stmt->execute(array(
                 ':nomes' => $nome,
-                ':valor' => $valor,
+                ':valor' => (int) $valor,
                 ':descricao' => $desc,
                 ':img' => $img
             ));
@@ -86,9 +86,9 @@
             $pdo = $this->getPDO();
             $stmt = $pdo->prepare(QUPDATE);
             $stmt->execute(array(
-                ':id' => $id,
+                ':id' => (int) $id,
                 ':nomes' => $nome,
-                ':valor' => $valor,
+                ':valor' => (int) $valor,
                 ':descricao' => $desc,
                 ':img' => $img,
             ));

@@ -12,7 +12,7 @@
         }
 
         public function setValor($p){
-            $this->$valor = $p;
+            $this->$valor = (int) $p;
         }
 
         public function setDesc($p){
