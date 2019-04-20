@@ -1,8 +1,6 @@
 <?php 
     include '../config.php';
-    include '../model/img.php';
-
-    session_start();
+    include 'img.php';
 
     class Upload{
         private $arquivo;
@@ -126,26 +124,6 @@
             }
             else return true;
         }
-
     }
 
-    new Upload();
-
-    $a = new Product();
-
-    $redirect = '';
-
-    if (isset($_SESSION['doUpdate'])){
-        $redirect = '../view/updated.php';
-
-        $_SESSION['updated'] = $a->getById($_SESSION['id']);
-    }
-    else{
-        $redirect = '../view/lastInserted.php';
-
-        $_SESSION['lastInserted'] = $a->getLastInserted();
-    }
-
-    header('Location: '.$redirect);
-    die();
 ?>

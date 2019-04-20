@@ -21,6 +21,8 @@
         die();
     }
     else{
+        $_SESSION['doUpdate'] = true;
+
         include 'upload.php';
     }
 ?>
