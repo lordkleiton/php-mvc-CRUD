@@ -14,11 +14,11 @@
         }
 
         public function getPDO(){
-            return $this->$pdo;
+            return $this->pdo;
         }
 
         public function setPDO($arg){
-            $this->$pdo = $arg;
+            $this->pdo = $arg;
         }
 
         public function getAll(){

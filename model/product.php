@@ -2,41 +2,41 @@
     include 'bd.php';
 
     class Product extends BD {
-        private $nome;
-        private $valor;
-        private $desc;
-        private $img;
+        public $nome;
+        public $valor;
+        public $desc;
+        public $img;
 
-        public function setNome($p){
-            $this->$nome = $p;
+        public function setNome($n){
+            $this->nome = $n;
         }
 
-        public function setValor($p){
-            $this->$valor = (int) $p;
+        public function setValor($v){
+            $this->valor = (int) $v;
         }
 
-        public function setDesc($p){
-            $this->$desc = $p;
+        public function setDesc($d){
+            $this->desc = $d;
         }
 
-        public function setImg($p){
-            $this->$img = $p;
+        public function setImg($i){
+            $this->img = $i;
         }
 
         public function getNome(){
-            return $this->$nome;
+            return $this->nome;
         }
 
         public function getValor(){
-            return $this->$valor;
+            return $this->valor;
         }
 
         public function getDesc(){
-            return $this->$desc;
+            return $this->desc;
         }
 
         public function getImg(){
-            return $this->$img;
+            return $this->img;
         }
     }
 ?>
