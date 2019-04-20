@@ -2,6 +2,8 @@
     include '../config.php';
     include '../model/img.php';
 
+    session_start();
+
     class Upload{
         private $arquivo;
         private $imgFileType;
@@ -15,7 +17,12 @@
             $this->setNome();
             $this->checkOk();
             if ($this->getUpload() != false){
-                new SaveImg($this->getNome(), $_FILES["img"]["tmp_name"], IMGPATH.$this->getNome());
+                if (isset($_SESSION['id'])){
+                    new SaveImg($this->getNome(), $_FILES["img"]["tmp_name"], IMGPATH.$this->getNome(), $_SESSION['id']);
+                }
+                else{
+                    new SaveImg($this->getNome(), $_FILES["img"]["tmp_name"], IMGPATH.$this->getNome());
+                }
             }
         }
 
@@ -122,15 +129,22 @@
 
     }
 
-    $redirect = '../view/lastInserted.php';
-
     new Upload();
 
     $a = new Product();
 
-    session_start();
+    $redirect = '';
 
-    $_SESSION['lastInserted'] = $a->getLastInserted();
+    if (isset($_SESSION['id'])){
+        $redirect = '../view/updated.php';
+
+        $_SESSION['updated'] = $a->getById($_SESSION['id']);
+    }
+    else{
+        $redirect = '../view/lastInserted.php';
+
+        $_SESSION['lastInserted'] = $a->getLastInserted();
+    }
 
     header('Location: '.$redirect);
     die();

@@ -1,11 +1,9 @@
 <?php 
-    include '../model/product.php';
-
     session_start();
 
-    var_dump($_POST);
-
     if (isset($_POST['keepImg'])){
+
+        include '../model/product.php';
         echo "tem";
         $a = new Product();
 
@@ -15,13 +13,15 @@
         $a->setImg($_SESSION['imgName']);
 
         $a->update($_SESSION['id'], $a->getNome(), $a->getValor(), $a->getDesc(), $a->getImg());
+
+        $redirect = '../view/updated.php';
+
+        $_SESSION['updated'] = $a->getById($_SESSION['id']);
+
+        header('Location: '.$redirect);
+        die();
     }
     else{
-        echo "num tem";
-        include "upload.php";
-
-        new Upload();
-
-        echo "passei";
+        include 'upload.php';
     }
 ?>

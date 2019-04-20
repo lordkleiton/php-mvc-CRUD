@@ -5,7 +5,7 @@
         private $imgName;
         private $imgPath;
 
-        public function __construct($n, $in, $ip){
+        public function __construct($n, $in, $ip, $id){
             $this->setImgName($n);
             $this->setImgPath($ip);
             $aux = $this->moveImg($in, $this->getImgPath());
@@ -17,7 +17,12 @@
                 $p->setDesc($_POST['desc']);
                 $p->setImg($this->getImgName());
 
-                $p->insert($p->getNome(), $p->getValor(), $p->getDesc(), $p->getImg());
+                if (isset($id)){
+                    $p->update($id, $p->getNome(), $p->getValor(), $p->getDesc(), $p->getImg());
+                }
+                else{
+                    $p->insert($p->getNome(), $p->getValor(), $p->getDesc(), $p->getImg());
+                }
             }
         }
 
