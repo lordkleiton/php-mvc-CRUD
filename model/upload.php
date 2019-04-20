@@ -8,24 +8,34 @@
         private $msg;
         private $nome;
         private $uploadOk;
+        private $f;
 
-        public function __construct(){
-            $this->setArquivo($_FILES["img"]["name"]);
+        public function __construct($f, $id, $prodName, $prodPrice, $prodDesc){
+            $this->setFile($f);
+            $this->setArquivo($this->getFile()["img"]["name"]);
             $this->setImgType($this->getArquivo());
             $this->setNome();
             $this->checkOk();
             if ($this->getUpload() != false){
-                if (isset($_SESSION['id'])){
-                    new SaveImg($this->getNome(), $_FILES["img"]["tmp_name"], IMGPATH.$this->getNome(), $_SESSION['id']);
+                if ($id != false){
+                    new SaveImg($this->getNome(), $this->getFile()["img"]["tmp_name"], IMGPATH.$this->getNome(), $id, $prodName, $prodPrice, $prodDesc);
                 }
                 else{
-                    new SaveImg($this->getNome(), $_FILES["img"]["tmp_name"], IMGPATH.$this->getNome());
+                    new SaveImg($this->getNome(), $this->getFile()["img"]["tmp_name"], IMGPATH.$this->getNome(), false, $prodName, $prodPrice, $prodDesc);
                 }
             }
         }
 
+        private function setFile($img){
+            $this->f = $img;
+        }
+
+        private function getFile(){
+            return $this->f;
+        }
+
         private function checkOk(){
-            $aux = $this->isImage(($_POST["submit"]), $_FILES["img"]["tmp_name"]);
+            $aux = $this->isImage(true, $this->getFile()["img"]["tmp_name"]);
             if ($aux != true) {
                 echo $this->getMsg();
             }
@@ -35,7 +45,7 @@
                     echo $this->getMsg();
                 }
                 else{
-                    $aux = $this->fileSize($_FILES["img"]["size"]);
+                    $aux = $this->fileSize($this->getFile()["img"]["size"]);
                     if ($aux != true){
                         echo $this->getMsg();
                     }

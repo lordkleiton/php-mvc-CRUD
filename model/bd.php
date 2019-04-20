@@ -16,7 +16,6 @@
         public function getPDO(){
             return $this->pdo;
         }
-
         public function setPDO($arg){
             $this->pdo = $arg;
         }
