@@ -2,9 +2,8 @@
     session_start();
 
     if (isset($_POST['keepImg'])){
-
         include '../model/product.php';
-        echo "tem";
+        
         $a = new Product();
 
         $a->setNome($_POST['name']);
