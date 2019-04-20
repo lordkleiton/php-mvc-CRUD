@@ -24,9 +24,7 @@
             $p->setValor(0);
             $p->setDesc($_POST['desc']);
             $p->setImg($_POST['img']);
-
-            //echo $p->getNome(), PHP_EOL, $p->getValor(), PHP_EOL, $p->getDesc(), PHP_EOL, $p->getImg();
-
+            
             var_dump($p->insert($p->getNome(), $p->getValor(), $p->getDesc(), $p->getImg()));
         }
     }

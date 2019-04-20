@@ -17,7 +17,7 @@
                 $p->setDesc($_POST['desc']);
                 $p->setImg($this->getImgName());
 
-                echo $p->insert($p->getNome(), $p->getValor(), $p->getDesc(), $p->getImg());
+                $p->insert($p->getNome(), $p->getValor(), $p->getDesc(), $p->getImg());
             }
         }
 

@@ -122,5 +122,16 @@
 
     }
 
+    $redirect = '../view/lastInserted.php';
+
     new Upload();
+
+    $a = new Product();
+
+    session_start();
+
+    $_SESSION['lastInserted'] = $a->getLastInserted();
+
+    header('Location: '.$redirect);
+    die();
 ?>
