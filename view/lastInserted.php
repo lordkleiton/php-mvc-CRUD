@@ -1,9 +1,3 @@
-<?php 
-    session_start();
-
-    var_dump($_SESSION['lastInserted']);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +6,13 @@
 </head>
 <body>
     <?php 
+        include '../config.php';
+        
         session_start();
 
-        var_dump($_SESSION['lastInserted']);
+        foreach($_SESSION['lastInserted'] as $linha){
+            include '../components/inserted.php';
+        }
     ?>
 </body>
 </html>

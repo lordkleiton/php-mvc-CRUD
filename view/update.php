@@ -5,7 +5,6 @@
 
     $_SESSION['imgName'] = $_SESSION['update'][0]['img'];
     $aux = $_SESSION['update'][0];
-    var_dump($_SESSION['id']);
 ?>
 
 <!DOCTYPE html>

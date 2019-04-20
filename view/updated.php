@@ -1,9 +1,3 @@
-<?php 
-    session_start();
-
-    var_dump($_SESSION['updated']);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +6,11 @@
 </head>
 <body>
     <?php 
-        session_start();
-        
-var_dump($_SESSION['results']);
+        include '../config.php';
 
-        foreach($_SESSION['results'] as $linha){
+        session_start();
+
+        foreach($_SESSION['updated'] as $linha){
             include '../components/search.php';
         }
     ?>
