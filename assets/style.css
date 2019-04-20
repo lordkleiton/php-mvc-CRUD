@@ -1,0 +1,56 @@
+body{
+    background-color: #ddddfd;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.conteudo{
+    padding: 30px;
+    border: solid 1px #1826e800;
+    border-radius: 25px;
+    box-shadow: 5px 5px 14px 0px #371456A0;
+    margin: 20px auto;
+    max-width: 1000px;
+    background-color: #efeff7;
+}
+
+h1{
+    margin-top: 0;
+}
+
+input[type="submit"] {
+    background-color: #255c62;
+    color: #FFF;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+.center{
+    margin: auto;
+    width: 90%;
+    text-align: center;
+}
+
+img{
+    margin: 10px 0;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+a .btnVoltar{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    box-shadow: 0px 0px 11px 0px #37145690;
+    background-color: #efeff7;
+    left: 180px;
+    top: 20px;
+}
