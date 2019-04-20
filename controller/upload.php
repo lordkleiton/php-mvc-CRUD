@@ -1,15 +1,6 @@
 <?php 
     include '../config.php';
-    //include '../model/img.php';
-
-    if (move_uploaded_file($_FILES["img"]["tmp_name"], IMGPATH)){
-        echo 'bom'.$_FILES["img"]["tmp_name"]."<br>";
-        return true;
-    }
-    else{
-        echo 'ruim'.$_FILES["img"]["tmp_name"]."<br>";
-        return false;
-    }
+    include '../model/img.php';
 
     class Upload{
         private $arquivo;
@@ -23,22 +14,8 @@
             $this->setImgType($this->getArquivo());
             $this->setNome();
             $this->checkOk();
-
-            //new SaveImg($this->getNome(), $_FILES["img"]["tmp_name"], IMGPATH.$this->getNome());
-
-            echo $this->moveImg($_FILES["img"]["tmp_name"], IMGPATH.$this->getNome());
-
-            print_r($_FILES);
-        }
-
-        private function moveImg($n, $p){
-            echo $n."<br>", $p."<br>";
-            if (move_uploaded_file($n, $p)){
-                echo 'bom'."<br>";
-                return true;}
-            else{
-                echo 'ruim'."<br>";
-                return false;
+            if ($this->getUpload() != false){
+                new SaveImg($this->getNome(), $_FILES["img"]["tmp_name"], IMGPATH.$this->getNome());
             }
         }
 
@@ -145,5 +122,5 @@
 
     }
 
-    //new Upload();
+    new Upload();
 ?>

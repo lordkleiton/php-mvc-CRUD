@@ -1,27 +1,31 @@
 <?php 
+    include 'product.php';
 
     class SaveImg{
         private $imgName;
         private $imgPath;
 
         public function __construct($n, $in, $ip){
-            echo "passei aqui"."<br>";
             $this->setImgName($n);
             $this->setImgPath($ip);
-            echo $this->moveImg($in, $this->getImgPath())."<br>";
-            var_dump($_FILES);
+            $aux = $this->moveImg($in, $this->getImgPath());
+            if ($aux != false){
+                $p = new Product();
+
+                $p->setNome($_POST['name']);
+                $p->setValor($_POST['price']);
+                $p->setDesc($_POST['desc']);
+                $p->setImg($this->getImgName());
+
+                echo $p->insert($p->getNome(), $p->getValor(), $p->getDesc(), $p->getImg());
+            }
         }
 
         private function moveImg($n, $p){
-            echo "passei aqui"."<br>";
-            echo $n."<br>", $p."<br>";
-            if (move_uploaded_file($n, $p)){
-                echo 'bom'."<br>";
-                return true;}
-            else{
-                echo 'ruim'."<br>";
+            if (move_uploaded_file($n, $p))
+                return true;
+            else
                 return false;
-            }
         }
 
         private function getImgName(){
