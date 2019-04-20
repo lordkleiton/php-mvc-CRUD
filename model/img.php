@@ -2,22 +2,18 @@
     include 'product.php';
 
     class SaveImg{
-        private $imgName;
-        private $imgPath;
-
-        public function __construct($n, $in, $ip, $id){
-            $this->setImgName($n);
-            $this->setImgPath($ip);
-            $aux = $this->moveImg($in, $this->getImgPath());
+        public function __construct($imgName, $origName, $imgPath, $id, $prodName, $prodPrice, $prodDesc){
+            $aux = $this->moveImg($origName, $imgPath);
+            
             if ($aux != false){
                 $p = new Product();
 
-                $p->setNome($_POST['name']);
-                $p->setValor($_POST['price']);
-                $p->setDesc($_POST['desc']);
-                $p->setImg($this->getImgName());
+                $p->setNome($prodName);
+                $p->setValor($prodPrice);
+                $p->setDesc($prodDesc);
+                $p->setImg($imgName);
 
-                if (isset($id)){
+                if ($id != false){
                     $p->update($id, $p->getNome(), $p->getValor(), $p->getDesc(), $p->getImg());
                 }
                 else{
@@ -26,25 +22,11 @@
             }
         }
 
-        private function moveImg($n, $p){
-            if (move_uploaded_file($n, $p))
+        private function moveImg($imgName, $p){
+            if (move_uploaded_file($imgName, $p))
                 return true;
             else
                 return false;
-        }
-
-        private function getImgName(){
-            return $this->imgName;
-        }
-        private function setImgName($p){
-            $this->imgName = $p;
-        }
-
-        private function getImgPath(){
-            return $this->imgPath;
-        }
-        private function setImgPath($p){
-            $this->imgPath = $p;
         }
     }
 
