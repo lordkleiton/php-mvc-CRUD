@@ -13,6 +13,8 @@
     
     if ($aux != 0){
         $redirect = '../view/deleted.php';
+
+        unlink(IMGPATH.$_SESSION['deleted'][0]['img']);
     }
     else {
         $redirect = '../view/error.php';
