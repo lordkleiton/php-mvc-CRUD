@@ -9,8 +9,7 @@
         }
 
         private function conecta(){
-            $inst = new PDO('mysql:host='.HOST.';dbname='.DB, USER, PASSWORD);
-            $this->setPDO($inst);
+            $this->pdo = new PDO('mysql:host='.HOST.';dbname='.DB, USER, PASSWORD);
         }
 
         public function getPDO(){
@@ -21,8 +20,7 @@
         }
 
         public function getAll(){
-            $pdo = $this->getPDO();
-            $stmt = $pdo->prepare(QSELECTALL);
+            $stmt = $this->pdo->prepare(QSELECTALL);
             $stmt->execute();
 
             return $stmt->fetchAll();
@@ -31,8 +29,7 @@
         public function getLike($nome){
             $nome = $nome.'%';
 
-            $pdo = $this->getPDO();
-            $stmt = $pdo->prepare(QSELECT);
+            $stmt = $this->pdo->prepare(QSELECT);
             $stmt->execute(array(
                 ':nome' => $nome
             ));
@@ -41,8 +38,7 @@
         }
 
         public function getById($id){
-            $pdo = $this->getPDO();
-            $stmt = $pdo->prepare(QSELECTBYID);
+            $stmt = $this->pdo->prepare(QSELECTBYID);
             $stmt->execute(array(
                 ':id' => (int) $id
             ));
@@ -51,16 +47,14 @@
         }
 
         public function getLastInserted(){
-            $pdo = $this->getPDO();
-            $stmt = $pdo->prepare(QSELECTLASTINSERTED);
+            $stmt = $this->pdo->prepare(QSELECTLASTINSERTED);
             $stmt->execute();
 
             return $stmt->fetchAll();
         }
 
         public function delete($id){
-            $pdo = $this->getPDO();
-            $stmt = $pdo->prepare(QDELETE);
+            $stmt = $this->pdo->prepare(QDELETE);
             $stmt->execute(array(
                 ':id' => (int) $id
             ));
@@ -69,8 +63,7 @@
         }
 
         public function insert($nome, $valor, $desc, $img){
-            $pdo = $this->getPDO();
-            $stmt = $pdo->prepare(QINSERT);
+            $stmt = $this->pdo->prepare(QINSERT);
             $stmt->execute(array(
                 ':nomes' => $nome,
                 ':valor' => (int) $valor,
@@ -82,8 +75,7 @@
         }
 
         public function update($id, $nome, $valor, $desc, $img){
-            $pdo = $this->getPDO();
-            $stmt = $pdo->prepare(QUPDATE);
+            $stmt = $this->pdo->prepare(QUPDATE);
             $stmt->execute(array(
                 ':id' => (int) $id,
                 ':nomes' => $nome,
