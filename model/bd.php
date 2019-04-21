@@ -65,7 +65,7 @@
                 ':id' => (int) $id
             ));
 
-            return true;
+            return $stmt->rowCount();
         }
 
         public function insert($nome, $valor, $desc, $img){
@@ -78,7 +78,7 @@
                 ':img' => $img
             ));
 
-            return true;
+            return $stmt->rowCount();
         }
 
         public function update($id, $nome, $valor, $desc, $img){
@@ -92,7 +92,7 @@
                 ':img' => $img,
             ));
 
-            return true;
+            return $stmt->rowCount();
         }
     }
 ?>
