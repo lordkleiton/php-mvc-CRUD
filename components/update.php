@@ -1,3 +1,4 @@
+<h1 class="center">Produto a ser atualizado</h1>
 <div class="conteudo">
     <form action="../controller/update.php" method="POST" enctype="multipart/form-data">
         <label for="nome">Insira o nome do produto: </label>

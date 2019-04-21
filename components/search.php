@@ -1,3 +1,4 @@
+<h1 class="center">Resultados da pesquisa</h1>
 <div class="conteudo">
     <h1 class="center"><?php echo $linha["nomes"] ?></h1>
     <p>Código do produto:<br><?php echo $linha["id"] ?></p>

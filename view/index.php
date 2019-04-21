@@ -5,6 +5,7 @@
     <title>MVC PHP CRUD</title>
 </head>
 <body>
+    <h1 class="center">Sistema de gerenciamento de produtos</h1>
     <div class="conteudo">
         <h1>Cadastro de produto</h1>
         <form action="../controller/upload.php" method="POST" enctype="multipart/form-data">
