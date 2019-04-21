@@ -14,6 +14,7 @@
                 $p->setImg($imgName);
 
                 if ($id != false){
+                    unlink(IMGPATH.$p->getById($id)[0]['img']);
                     $p->update($id, $p->getNome(), $p->getValor(), $p->getDesc(), $p->getImg());
                 }
                 else{
