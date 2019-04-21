@@ -1,4 +1,4 @@
-<h1 class="center">O seguinte produto foi inserido</h1>
+<h1 class="center">Este é o último produto que foi inserido</h1>
 <div class="conteudo">
     <h1 class="center"><?php echo $linha["nomes"] ?></h1>
     <p>Código do produto:<br><?php echo $linha["id"] ?></p>
