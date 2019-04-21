@@ -23,6 +23,8 @@ Também é necessário configurar o Apache de forma que ele consiga interagir co
 Após isso:
 
 * Execute o script `db.sql` para criar o bando de dados que a aplicação espera que exista.
+* Faça uma cópia do arquivo `config-example.php` e renomeie para `config.php`.
+* Preencha o novo `config.php` com os dados para a conexão com o seu banco de dados.
 * Mova todos os arquivos para a pasta que seu servidor Apache está servindo.
   * Obs.: Caso seu Apache sirva através da pasta `/srv/http/` basta executar o arquivo `copy.sh` como `sudo` que isso vai ser feito automaticamente.
 * Navegue via `localhost`.
