@@ -2,10 +2,10 @@
     include 'bd.php';
 
     class Product extends BD {
-        public $nome;
-        public $valor;
-        public $desc;
-        public $img;
+        private $nome;
+        private $valor;
+        private $desc;
+        private $img;
 
         public function setNome($n){
             $this->nome = $n;
