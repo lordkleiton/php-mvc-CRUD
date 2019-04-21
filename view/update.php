@@ -14,6 +14,7 @@
     <title>Alterar produto</title>
 </head>
 <body>
+    <a href="../index.php"><div class="btnVoltar"><</div></a>
     <div class="conteudo">
         <form action="../controller/update.php" method="POST" enctype="multipart/form-data">
             <label for="nome">Insira o nome do produto: </label>

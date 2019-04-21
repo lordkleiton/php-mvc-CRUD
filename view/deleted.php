@@ -5,6 +5,7 @@
     <title>Produto deletado</title>
 </head>
 <body>
+    <a href="../index.php"><div class="btnVoltar"><</div></a>
     <?php 
         session_start();
 

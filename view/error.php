@@ -5,6 +5,7 @@
     <title>Erro</title>
 </head>
 <body>
+    <a href="../index.php"><div class="btnVoltar"><</div></a>
     <?php 
         session_start();
 
