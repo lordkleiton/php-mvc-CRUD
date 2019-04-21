@@ -5,10 +5,6 @@
         private $pdo;
 
         public function __construct(){
-            $this->conecta();
-        }
-
-        private function conecta(){
             $this->pdo = new PDO('mysql:host='.HOST.';dbname='.DB, USER, PASSWORD);
         }
 
