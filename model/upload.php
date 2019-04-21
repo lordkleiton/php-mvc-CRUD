@@ -17,12 +17,7 @@
             $this->setNome();
             $this->checkOk();
             if ($this->uploadOk != false){
-                if ($id != false){
-                    new SaveImg($this->getNome(), $this->f["img"]["tmp_name"], IMGPATH.$this->getNome(), $id, $prodName, $prodPrice, $prodDesc);
-                }
-                else{
-                    new SaveImg($this->getNome(), $this->f["img"]["tmp_name"], IMGPATH.$this->getNome(), false, $prodName, $prodPrice, $prodDesc);
-                }
+                new SaveImg($this->getNome(), $this->f["img"]["tmp_name"], IMGPATH.$this->getNome(), $id, $prodName, $prodPrice, $prodDesc);
             }
         }
 
