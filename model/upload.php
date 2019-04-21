@@ -5,57 +5,37 @@
     class Upload{
         private $arquivo;
         private $imgFileType;
-        private $msg;
         private $nome;
         private $uploadOk;
         private $f;
 
-        public function __construct($f, $id, $prodName, $prodPrice, $prodDesc){
-            $this->setFile($f);
-            $this->setArquivo($this->getFile()["img"]["name"]);
+        public function __construct($file, $id, $prodName, $prodPrice, $prodDesc){
+            $this->f = $file;
+            $this->uploadOk = false;
+            $this->setArquivo($this->f["img"]["name"]);
             $this->setImgType($this->getArquivo());
             $this->setNome();
             $this->checkOk();
-            if ($this->getUpload() != false){
+            if ($this->uploadOk != false){
                 if ($id != false){
-                    new SaveImg($this->getNome(), $this->getFile()["img"]["tmp_name"], IMGPATH.$this->getNome(), $id, $prodName, $prodPrice, $prodDesc);
+                    new SaveImg($this->getNome(), $this->f["img"]["tmp_name"], IMGPATH.$this->getNome(), $id, $prodName, $prodPrice, $prodDesc);
                 }
                 else{
-                    new SaveImg($this->getNome(), $this->getFile()["img"]["tmp_name"], IMGPATH.$this->getNome(), false, $prodName, $prodPrice, $prodDesc);
+                    new SaveImg($this->getNome(), $this->f["img"]["tmp_name"], IMGPATH.$this->getNome(), false, $prodName, $prodPrice, $prodDesc);
                 }
             }
-        }
-
-        private function setFile($img){
-            $this->f = $img;
-        }
-
-        private function getFile(){
-            return $this->f;
         }
 
         private function checkOk(){
-            $aux = $this->isImage(true, $this->getFile()["img"]["tmp_name"]);
-            if ($aux != true) {
-                echo $this->getMsg();
-            }
-            else{
+            $aux = $this->isImage($this->f["img"]["tmp_name"]);
+            if ($aux){
                 $aux = $this->fileExists();
-                if ($aux != true){
-                    echo $this->getMsg();
-                }
-                else{
-                    $aux = $this->fileSize($this->getFile()["img"]["size"]);
-                    if ($aux != true){
-                        echo $this->getMsg();
-                    }
-                    else{
+                if ($aux){
+                    $aux = $this->fileSize($this->f["img"]["size"]);
+                    if ($aux){
                         $aux = $this->fileType();
-                        if ($aux != true){
-                            echo $this->getMsg();
-                        }
-                        else{
-                            $this->setUpload(true);
+                        if ($aux){
+                            $this->uploadOk = true;
                         }
                     }
                 }
@@ -76,13 +56,6 @@
             $this->imgFileType = strtolower(pathinfo($this->getArquivo(), PATHINFO_EXTENSION));
         }
 
-        private function getMsg(){
-            return $this->msg;
-        }
-        private function setMsg($p){
-            $this->msg = $this->getMsg.$p;
-        }
-
         private function getNome(){
             return $this->nome;
         }
@@ -90,49 +63,20 @@
             $this->nome = md5(uniqid(rand(), true)).'.'.$this->getImgType();
         }
 
-        private function getUpload(){
-            return $this->uploadOk;
-        }
-        private function setUpload($p){
-            $this->uploadOk = $p;
-        }
-
-        public function isImage($s, $t){
-            if (isset($s)){
-                $check = getimagesize($t);
-                if($check !== false) {
-                    return true;
-                } 
-                else {
-                    $this->setMsg("Não é uma imagem. ");
-                    return false;
-                }
-            }
+        public function isImage($t){
+            return (getimagesize($t) != false) ? true : false;
         }
 
         public function fileExists(){
-            if (file_exists($this->getArquivo())){
-                $this->setMsg("O arquivo já existe. ");
-                return false;
-            }
-            else return true;
+            return (file_exists($this->getArquivo())) ? false : true;
         }
 
         private function fileSize($s){
-            if ($s > 500000){
-                $this->setMsg("O arquivo é muito grande. ");
-                return false;
-            }
-            else return true;
+            return ($s > 500000) ? false : true;
         }
 
         private function fileType(){
-            $type = $this->getImgType();
-            if($type != "jpg" && $type != "png" && $type != "jpeg") {
-                $this->setMsg("Somente JPG, PNG e JPEG permitidos. ");
-                return false;
-            }
-            else return true;
+            return ($this->getImgType() != "jpg" && $this->getImgType() != "png" && $this->getImgType() != "jpeg") ? false : true;
         }
     }
 
