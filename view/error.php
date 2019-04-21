@@ -8,9 +8,9 @@
     <?php 
         session_start();
 
-        foreach($_SESSION['error'] as $linha){
-            include '../components/error.php';
-        }
+        $msg = $_SESSION['error'];
+
+        include '../components/error.php';
     ?>
 </body>
 </html>
